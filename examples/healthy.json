@@ -1,0 +1,155 @@
+{
+  "scenario": "healthy",
+  "synthetic_data": true,
+  "provenance": {
+    "generator_seed": 13,
+    "reference_n": 450,
+    "observation_n": 200,
+    "training_rows": 400,
+    "split": "disjoint generated seeds"
+  },
+  "candidate_model": {
+    "weights": [
+      2.9821884142809716,
+      -3.1793417255636554,
+      2.3423504248376905
+    ],
+    "bias": -0.0006775775406376225,
+    "trained_examples": 400,
+    "training_method": "batch_gradient_descent_logistic_regression",
+    "features": [
+      "signal_strength",
+      "context_quality",
+      "latency_pressure"
+    ]
+  },
+  "baseline_metrics": {
+    "n": 200,
+    "confusion": {
+      "tp": 100,
+      "fp": 39,
+      "fn": 17,
+      "tn": 44
+    },
+    "accuracy": 0.72,
+    "precision": 0.7194244604316546,
+    "recall": 0.8547008547008547,
+    "f1": 0.7812499999999999,
+    "brier": 0.19213939853550394,
+    "auc": 0.780043249922768,
+    "segments": {
+      "edge": {
+        "n": 66,
+        "positives": 44,
+        "recall": 0.9090909090909091,
+        "brier": 0.173895893066435
+      },
+      "standard": {
+        "n": 134,
+        "positives": 73,
+        "recall": 0.821917808219178,
+        "brier": 0.2011250057068364
+      }
+    }
+  },
+  "candidate_metrics": {
+    "n": 200,
+    "confusion": {
+      "tp": 98,
+      "fp": 38,
+      "fn": 19,
+      "tn": 45
+    },
+    "accuracy": 0.715,
+    "precision": 0.7205882352941176,
+    "recall": 0.8376068376068376,
+    "f1": 0.7747035573122529,
+    "brier": 0.19105299439990453,
+    "auc": 0.7801462259293585,
+    "segments": {
+      "edge": {
+        "n": 66,
+        "positives": 44,
+        "recall": 0.8636363636363636,
+        "brier": 0.17289571913960097
+      },
+      "standard": {
+        "n": 134,
+        "positives": 73,
+        "recall": 0.821917808219178,
+        "brier": 0.19999612997587493
+      }
+    }
+  },
+  "feature_drift_psi": {
+    "signal_strength": 0.039923910662554796,
+    "context_quality": 0.04054649935189958,
+    "latency_pressure": 0.12982323551366898
+  },
+  "canary_gate": {
+    "decision": "allow_candidate",
+    "checks": [
+      {
+        "check": "candidate_f1",
+        "passed": true,
+        "actual": 0.7747035573122529,
+        "limit": 0.58
+      },
+      {
+        "check": "f1_regression",
+        "passed": true,
+        "actual": 0.006546442687746956,
+        "limit": 0.06
+      },
+      {
+        "check": "brier_score",
+        "passed": true,
+        "actual": 0.19105299439990453,
+        "limit": 0.27
+      },
+      {
+        "check": "psi_signal_strength",
+        "passed": true,
+        "actual": 0.039923910662554796,
+        "limit": 0.25
+      },
+      {
+        "check": "psi_context_quality",
+        "passed": true,
+        "actual": 0.04054649935189958,
+        "limit": 0.25
+      },
+      {
+        "check": "psi_latency_pressure",
+        "passed": true,
+        "actual": 0.12982323551366898,
+        "limit": 0.25
+      },
+      {
+        "check": "segment_recall_edge",
+        "passed": true,
+        "actual": 0.8636363636363636,
+        "positives": 44,
+        "min_positives": 12,
+        "limit": 0.45
+      },
+      {
+        "check": "segment_recall_standard",
+        "passed": true,
+        "actual": 0.821917808219178,
+        "positives": 73,
+        "min_positives": 12,
+        "limit": 0.45
+      }
+    ],
+    "policy": {
+      "min_f1": 0.58,
+      "max_f1_regression": 0.06,
+      "max_psi_per_feature": 0.25,
+      "max_brier": 0.27,
+      "min_segment_recall": 0.45,
+      "min_segment_positives": 12
+    },
+    "actual_deployment_performed": false
+  }
+}

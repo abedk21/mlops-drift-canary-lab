@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Synthetic MLOps report</title>
+<style>body{font:15px system-ui,sans-serif;margin:2rem auto;max-width:960px;padding:0 1rem;background:#f8fafc;color:#142235}h1{margin-bottom:.1rem}.subtitle{color:#506172}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}.tile{padding:1.1rem;border:1px solid #d5e1e9;background:white;border-radius:12px}.tile strong{font-size:1.55rem;display:block}.metric{display:flex;gap:1rem;align-items:center;margin:12px 0}.metric span{width:145px}.track{background:#e2e8f0;border-radius:8px;flex:1;overflow:hidden;height:15px}.bar{height:100%;background:#2563eb}.metric strong{width:55px}table{width:100%;border-collapse:collapse;background:white}td,th{padding:.7rem;border-bottom:1px solid #e5e7eb;text-align:left}section{margin-top:2rem}code{background:#e5e7eb;padding:.1rem .3rem}footer{margin-top:3rem;color:#53627a}</style></head><body>
+<h1>MLOps Canary & Drift Report</h1><p class="subtitle">Scenario: healthy. All records and labels are synthetic; no production deployment occurred.</p>
+<div class="grid"><div class="tile">Gate decision<strong>allow_candidate</strong></div><div class="tile">Candidate F1<strong>0.775</strong></div><div class="tile">Candidate Brier<strong>0.191</strong></div><div class="tile">Evaluation size<strong>200</strong></div></div>
+<section><h2>Feature drift · PSI (threshold 0.25)</h2><div class="metric"><span>signal_strength</span><div class="track"><div class="bar" style="width:6.7%"></div></div><strong>0.040</strong></div><div class="metric"><span>context_quality</span><div class="track"><div class="bar" style="width:6.8%"></div></div><strong>0.041</strong></div><div class="metric"><span>latency_pressure</span><div class="track"><div class="bar" style="width:21.6%"></div></div><strong>0.130</strong></div></section>
+<section><h2>Explicit release checks</h2><table><thead><tr><th>Check</th><th>Result</th><th>Actual</th><th>Limit</th></tr></thead><tbody><tr><td>candidate_f1</td><td>PASS</td><td>0.7747</td><td>0.58</td></tr>
+<tr><td>f1_regression</td><td>PASS</td><td>0.0065</td><td>0.06</td></tr>
+<tr><td>brier_score</td><td>PASS</td><td>0.1911</td><td>0.27</td></tr>
+<tr><td>psi_signal_strength</td><td>PASS</td><td>0.0399</td><td>0.25</td></tr>
+<tr><td>psi_context_quality</td><td>PASS</td><td>0.0405</td><td>0.25</td></tr>
+<tr><td>psi_latency_pressure</td><td>PASS</td><td>0.1298</td><td>0.25</td></tr>
+<tr><td>segment_recall_edge</td><td>PASS</td><td>0.8636</td><td>0.45</td></tr>
+<tr><td>segment_recall_standard</td><td>PASS</td><td>0.8219</td><td>0.45</td></tr></tbody></table></section>
+<footer>Educational logistic-regression benchmark. Metrics are generated on fabricated support-event traffic. Release decisions are a demo and require separate operational validation.</footer></body></html>
